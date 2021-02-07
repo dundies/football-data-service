@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+  application:
+    name: football-data-service
+
+server.port: 9991
+
+app:
+  fallback:
+    team:
+      name: Askal FC (Application Config)
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+
+management.endpoints.web.exposure.include: "*"
+hystrix.dashboard.proxy-stream-allow-list: "*"
+
+eureka.client.service-url.defaultZone: "http://localhost:9761/eureka"
+
+rest-api:
+  api-football-service-adapter:
+    url: "http://api-football-service-adapter"
+    teams-endpoint: ${rest-api.api-football-service-adapter.url}/teams
+
